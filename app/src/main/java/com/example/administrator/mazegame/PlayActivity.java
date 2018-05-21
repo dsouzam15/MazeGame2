@@ -17,7 +17,8 @@ import java.util.ArrayList;
  */
 
 public class PlayActivity extends AppCompatActivity{
-
+    int current_row = 0;
+    int current_column = 0;
     public void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_screen);
@@ -122,12 +123,12 @@ public class PlayActivity extends AppCompatActivity{
         final ImageView [][] barrier_row = {Wall_row1, Wall_row2, Wall_row3, Wall_row4, Wall_row5};
         final ImageView [][] barrier_column = {Wall_column1, Wall_column2, Wall_column3, Wall_column4};
 
-        int current_row = 0;
-        int current_column = 0;
+
 
         Button up = findViewById(R.id.Up_Button);
         up.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+
                 if (current_row > 0){
                     if (barrier_row[current_row][current_column].getVisibility() == View.INVISIBLE) {
                         ImageView last_position = grid[current_row][current_column];
@@ -137,26 +138,29 @@ public class PlayActivity extends AppCompatActivity{
                         last_position.setImageResource(R.drawable.clear);
                     }
             }
-        });
-        });
+        }}
+        );
+    //    });
 
         Button down = findViewById(R.id.Down_Button);
-        down.setOnClickListener (new View.OnClickListener(){
-            public void onClick(View view) {
-                if (current_row < 5) {
-                    if (barrier_row[current_row][current_column].getVisibility() == View.INVISIBLE) {
-                        ImageView last_position = grid[current_row][current_column];
-                        current_row = current_row + 1;
-                        ImageView current_position = grid[current_row][current_column];
-                        current_position.setImageResource(R.drawable.marker);
-                        last_position.setImageResource(R.drawable.clear);
-                        if (current_position == findViewById(R.id.Path_E5)) {
-                            startActivity(new Intent(PlayActivity.this, WinActivity.class));
-                        }
-                    }
-            }
-            }
+        down.setOnClickListener (new View.OnClickListener() {
+                                     public void onClick(View view) {
+                                         if (current_row < 5) {
+                                             if (barrier_row[current_row][current_column].getVisibility() == View.INVISIBLE) {
+                                                 ImageView last_position = grid[current_row][current_column];
+                                                 current_row = current_row + 1;
+                                                 ImageView current_position = grid[current_row][current_column];
+                                                 current_position.setImageResource(R.drawable.marker);
+                                                 last_position.setImageResource(R.drawable.clear);
+                                                 if (current_position == findViewById(R.id.Path_E5)) {
+                                                     startActivity(new Intent(PlayActivity.this, WinActivity.class));
+                                                 }
+                                             }
+                                         }
+                                     }
+                                 }
 
+);
         Button left = findViewById(R.id.Left_Button);
         left.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -170,7 +174,8 @@ public class PlayActivity extends AppCompatActivity{
                     }
                 }
             }
-        });
+        }
+        );
 
         Button right = findViewById(R.id.Right_Button);
         right.setOnClickListener(new View.OnClickListener() {
@@ -195,4 +200,4 @@ public class PlayActivity extends AppCompatActivity{
     }
 
 }
-}
+
